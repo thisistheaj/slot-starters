@@ -1,0 +1,39 @@
+{
+  "github": {
+    "topics": [
+      "starter",
+      "boilerplate",
+      "template",
+      "zero-configuration",
+      "remix-stack"
+    ],
+    "language": "javascript",
+    "minStars": 100,
+    "limit": 2000,
+    "rateLimit": {
+      "requestsPerHour": 4500,
+      "delayBetweenRequests": 500
+    }
+  },
+  "npm": {
+    "keywords": [
+      "create-app",
+      "generator",
+      "yeoman-generator",
+      "create-react-app",
+      "starter-kit"
+    ],
+    "limit": 2000,
+    "rateLimit": {
+      "requestsPerHour": 5000,
+      "delayBetweenRequests": 500
+    }
+  },
+  "batch": {
+    "size": 20
+  },
+  "output": {
+    "github": "github-starters",
+    "npm": "npm-starters"
+  }
+} 

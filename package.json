@@ -1,0 +1,17 @@
+{
+  "name": "slot-starters",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "slot": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
