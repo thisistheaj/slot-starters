@@ -6,6 +6,7 @@ import { formatDuration } from './lib/common.js';
 import { scrapeGithub } from './lib/github.js';
 import { scrapeNpm } from './lib/npm.js';
 import { analyzeStarters } from './lib/analyze.js';
+import { searchStarters } from './scripts/search.js';
 
 const program = new Command();
 
@@ -106,6 +107,39 @@ program
       await analyzeStarters(options);
     } catch (error) {
       console.error('Error:', error.message);
+      process.exit(1);
+    }
+  });
+
+// Search command
+program
+  .command('search')
+  .description('Search starter templates')
+  .option('-t, --technologies <items>', 'Technologies to search for (comma-separated)', commaSeparatedList)
+  .option('-p, --purposes <items>', 'Purposes to search for (comma-separated key:value pairs)', commaSeparatedList)
+  .option('-f, --features <items>', 'Features to search for (comma-separated paths)', commaSeparatedList)
+  .option('-l, --limit <number>', 'Maximum number of results', parseInt, 10)
+  .action(async (options) => {
+    try {
+      const results = await searchStarters({
+        technologies: options.technologies,
+        purposes: options.purposes,
+        features: options.features
+      }, options.limit);
+
+      console.log('\nSearch Results:');
+      for (const result of results) {
+        console.log(`\n${result.metadata.name}`);
+        console.log(`Matches: ${result._matchedCount} (Quality Score: ${result._score.toFixed(2)})`);
+        console.log(`URL: ${result.metadata.url}`);
+        console.log(`Technologies: ${result.technologies.join(', ')}`);
+        console.log('Purposes:');
+        for (const [key, value] of Object.entries(result.purposes)) {
+          console.log(`  ${key}: ${value}`);
+        }
+      }
+    } catch (err) {
+      console.error('Search failed:', err);
       process.exit(1);
     }
   });
