@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "name": "string",
+    "source": {
+      "type": "enum",
+      "values": ["github", "npm"]
+    },
+    "url": "string",
+    "stars": "number",
+    "forks": "number",
+    "lastUpdate": "date"
+  },
+  "technologies": {
+    "type": "array",
+    "description": "Flat list of all technologies, tools, and frameworks used",
+    "examples": [
+      "react", "typescript", "tailwind", "jest", "vite", "docker",
+      "postgres", "prisma", "next-auth", "eslint", "prettier"
+    ]
+  },
+  "purposes": {
+    "type": "object",
+    "description": "Maps technologies to their roles in the template",
+    "examples": {
+      "ui": "react",
+      "styling": "tailwind",
+      "database": "postgres",
+      "orm": "prisma",
+      "testing": "jest",
+      "bundling": "vite"
+    }
+  },
+  "features": {
+    "development": {
+      "hotReload": "boolean",
+      "watchMode": "boolean",
+      "debugConfig": "boolean",
+      "devContainer": "boolean",
+      "typeChecking": "boolean",
+      "linting": "boolean",
+      "formatting": "boolean"
+    },
+    "testing": {
+      "unitTests": "boolean",
+      "integrationTests": "boolean",
+      "e2eTests": "boolean",
+      "cicd": "boolean"
+    },
+    "deployment": {
+      "envConfig": "boolean",
+      "dockerfile": "boolean",
+      "infraAsCode": "boolean",
+      "productionOptimized": "boolean"
+    },
+    "security": {
+      "dependencyScanning": "boolean",
+      "secretManagement": "boolean",
+      "authentication": "boolean"
+    }
+  },
+  "quality": {
+    "maintenance": {
+      "commitFrequency": {
+        "type": "scale",
+        "range": [1, 5]
+      },
+      "issueResponseTime": {
+        "type": "scale",
+        "range": [1, 5]
+      }
+    },
+    "documentation": {
+      "readmeCompleteness": {
+        "type": "scale",
+        "range": [1, 5]
+      },
+      "setupInstructions": {
+        "type": "scale",
+        "range": [1, 5]
+      },
+      "exampleCoverage": {
+        "type": "scale",
+        "range": [1, 5]
+      }
+    }
+  },
+  "other": {
+    "type": "object",
+    "description": "Important information that doesn't fit elsewhere",
+    "examples": {
+      "unexpectedProperty": { "unexpected": "datastructure" }
+    }
+  }
+} 
