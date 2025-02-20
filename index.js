@@ -5,6 +5,7 @@ import config from './lib/config.js';
 import { formatDuration } from './lib/common.js';
 import { scrapeGithub } from './lib/github.js';
 import { scrapeNpm } from './lib/npm.js';
+import { analyzeStarters } from './lib/analyze.js';
 
 const program = new Command();
 
@@ -94,6 +95,20 @@ addCommonOptions(
         process.exit(1);
     }
 });
+
+// Add analyze command
+program
+  .command('analyze')
+  .description('analyze starter templates with LLM')
+  .option('-f, --force', 'force reanalysis of all templates', false)
+  .action(async (options) => {
+    try {
+      await analyzeStarters(options);
+    } catch (error) {
+      console.error('Error:', error.message);
+      process.exit(1);
+    }
+  });
 
 // Helper for parsing comma-separated lists
 function commaSeparatedList(value) {
