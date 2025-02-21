@@ -6,7 +6,8 @@
     "slot": "./index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "commander": "^11.1.0",
     "node-fetch": "^3.3.2",
     "openai": "^4.28.0",
-    "dotenv": "^16.4.1"
+    "dotenv": "^16.4.1",
+    "mcp-js-server": "^0.1.3"
   }
 }
