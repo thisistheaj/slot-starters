@@ -3,10 +3,10 @@ import { Command } from 'commander';
 import path from 'path';
 import config from './lib/config.js';
 import { formatDuration } from './lib/common.js';
-import { scrapeGithub } from './lib/github.js';
-import { scrapeNpm } from './lib/npm.js';
+import { scrapeGithubWithConfig } from './lib/github.js';
+import { scrapeNpmWithConfig } from './lib/npm.js';
 import { analyzeStarters } from './lib/analyze.js';
-import { searchStarters } from './scripts/search.js';
+import { formatSearchResults } from './scripts/search.js';
 
 const program = new Command();
 
@@ -42,20 +42,7 @@ addCommonOptions(
         const startTime = Date.now();
         const outputDir = path.join(process.cwd(), config.output.github);
 
-        // Merge config with command line options
-        const scrapeOptions = {
-            languages: options.languages || config.github.languages,
-            minStars: options.stars || config.github.minStars,
-            limit: options.limit || config.github.limit,
-            topics: options.topics || config.github.topics
-        };
-
-        // Update rate limiting if specified
-        if (options.batch) config.batch.size = options.batch;
-        if (options.delay) config.github.rateLimit.delayBetweenRequests = options.delay;
-        if (options.rph) config.github.rateLimit.requestsPerHour = options.rph;
-
-        const results = await scrapeGithub(token, scrapeOptions);
+        const results = await scrapeGithubWithConfig(token, options);
         const duration = Date.now() - startTime;
         console.log(`\nDone! Crawled ${results.length} repositories in ${formatDuration(duration)}`);
         console.log(`Data written to ${outputDir}`);
@@ -76,18 +63,7 @@ addCommonOptions(
         const startTime = Date.now();
         const outputDir = path.join(process.cwd(), config.output.npm);
 
-        // Merge config with command line options
-        const scrapeOptions = {
-            keywords: options.keywords || config.npm.keywords,
-            limit: options.limit || config.npm.limit
-        };
-
-        // Update rate limiting if specified
-        if (options.batch) config.batch.size = options.batch;
-        if (options.delay) config.npm.rateLimit.delayBetweenRequests = options.delay;
-        if (options.rph) config.npm.rateLimit.requestsPerHour = options.rph;
-
-        const results = await scrapeNpm(scrapeOptions);
+        const results = await scrapeNpmWithConfig(options);
         const duration = Date.now() - startTime;
         console.log(`\nDone! Crawled ${results.length} packages in ${formatDuration(duration)}`);
         console.log(`Data written to ${outputDir}`);
@@ -121,11 +97,7 @@ program
   .option('-l, --limit <number>', 'Maximum number of results', parseInt, 10)
   .action(async (options) => {
     try {
-      const results = await searchStarters({
-        technologies: options.technologies,
-        purposes: options.purposes,
-        features: options.features
-      }, options.limit);
+      const results = await formatSearchResults(options);
 
       console.log('\nSearch Results:');
       for (const result of results) {

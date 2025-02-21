@@ -125,4 +125,25 @@ async function searchStarters(query = {}, limit = 10) {
   }));
 }
 
+export async function formatSearchResults(options) {
+    const query = {
+        technologies: options.technologies,
+        purposes: options.purposes,
+        features: options.features
+    };
+
+    const results = await searchStarters(query, options.limit);
+
+    return results.map(result => ({
+        metadata: {
+            name: result.metadata.name,
+            url: result.metadata.url
+        },
+        technologies: result.technologies,
+        purposes: result.purposes,
+        _matchedCount: result._matchedCount,
+        _score: result._score
+    }));
+}
+
 export { searchStarters }; 
