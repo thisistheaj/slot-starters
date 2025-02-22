@@ -30,9 +30,16 @@ graph TD
     G --> I
     I --> J[Ranked Results]
 
-    style C fill:#f9f,stroke:#333
-    style E fill:#bbf,stroke:#333
-    style I fill:#bfb,stroke:#333
+    style C fill:#FF69B4,stroke:#fff,color:#fff
+    style E fill:#4169E1,stroke:#fff,color:#fff
+    style I fill:#3CB371,stroke:#fff,color:#fff
+    style A fill:#2F4F4F,stroke:#fff,color:#fff
+    style B fill:#2F4F4F,stroke:#fff,color:#fff
+    style D fill:#4A4A4A,stroke:#fff,color:#fff
+    style F fill:#4A4A4A,stroke:#fff,color:#fff
+    style G fill:#4A4A4A,stroke:#fff,color:#fff
+    style H fill:#2F4F4F,stroke:#fff,color:#fff
+    style J fill:#4A4A4A,stroke:#fff,color:#fff
 ```
 
 ### 1. Template Discovery

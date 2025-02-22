@@ -42,7 +42,7 @@ landing page:
 -[ ] remove openai dependency for MCP setup?
 
 # todos:
--[ ] push to GH
--[ ] deploy remix site to railway
--[ ] connect domain to remix site
+-[x] push to GH
+-[x] deploy remix site to railway
+-[x] connect domain to remix site
 -[ ] launch on twitter
