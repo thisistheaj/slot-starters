@@ -1,6 +1,13 @@
-# Starter Template Analysis Tool
+# Slot: A Place to Put Your Tokens
 
-A comprehensive tool for discovering, analyzing and searching software starter templates. It helps developers find the right starter template by combining automated scraping, AI analysis, and intelligent search.
+Slot is an MCP (Model Context Protocol) server that enables developers to search and discover starter templates directly from within Claude Desktop and other LLM applications. By integrating with your AI assistant's workflow, Slot helps you find the perfect starter template while discussing architecture and project setup.
+
+Think of it as an intelligent template discovery system that:
+- Lives inside your AI assistant
+- Understands your project requirements
+- Finds relevant starter templates
+- Explains their tradeoffs
+- Helps you make informed decisions
 
 ## Overview
 
@@ -78,7 +85,60 @@ This helps surface the most relevant and well-maintained templates that match th
 
 ## MCP
 
-TBD
+This project includes an MCP (Model Context Protocol) server that allows you to use the starter template search functionality directly from Claude Desktop.
+
+### Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/slot-starters.git
+cd slot-starters
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set your OpenAI API key and configure Claude Desktop:
+```bash
+# Set your OpenAI API key
+export OPENAI_API_KEY="your-api-key-here"
+
+# Create Claude Desktop config with the key
+mkdir -p ~/Library/Application\ Support/Claude && cat > ~/Library/Application\ Support/Claude/claude_desktop_config.json << EOL
+{
+  "mcpServers": {
+    "slot-starters": {
+      "command": "node",
+      "args": [
+        "$(pwd)/server.js"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "$OPENAI_API_KEY"
+      }
+    }
+  }
+}
+EOL
+```
+   - Replace `your-api-key-here` with your actual OpenAI API key
+   - Note: This command assumes you're in the project directory. If not, replace `$(pwd)` with the absolute path to your project
+
+4. Restart Claude Desktop to load the new configuration
+
+### Available Tools
+
+Once configured, Claude will have access to the following tools:
+
+- `search_starters`: Search for starter templates using technologies, purposes, and features
+  - Example: "Find me React starters that use TypeScript and have hot reload"
+
+The search results will include:
+- Template name and URL
+- Technologies used
+- Primary purposes
+- Match score and quality metrics
 
 ## CLI
 
@@ -172,3 +232,103 @@ Default settings can be configured in `config.js`:
 - Default search parameters
 - Minimum quality thresholds
 - Output directories 
+
+## Appendix
+
+### Template Analysis Ontology
+
+The following schema defines how starter templates are analyzed and structured:
+
+```json
+{
+  "metadata": {
+    "name": "string",
+    "source": {
+      "type": "enum",
+      "values": ["github", "npm"]
+    },
+    "url": "string",
+    "stars": "number",
+    "forks": "number",
+    "lastUpdate": "date"
+  },
+  "technologies": {
+    "type": "array",
+    "description": "Flat list of all technologies, tools, and frameworks used",
+    "examples": [
+      "react", "typescript", "tailwind", "jest", "vite", "docker",
+      "postgres", "prisma", "next-auth", "eslint", "prettier"
+    ]
+  },
+  "purposes": {
+    "type": "object",
+    "description": "Maps technologies to their roles in the template",
+    "examples": {
+      "ui": "react",
+      "styling": "tailwind",
+      "database": "postgres",
+      "orm": "prisma",
+      "testing": "jest",
+      "bundling": "vite"
+    }
+  },
+  "features": {
+    "development": {
+      "hotReload": "boolean",
+      "watchMode": "boolean",
+      "debugConfig": "boolean",
+      "devContainer": "boolean",
+      "typeChecking": "boolean",
+      "linting": "boolean",
+      "formatting": "boolean"
+    },
+    "testing": {
+      "unitTests": "boolean",
+      "integrationTests": "boolean",
+      "e2eTests": "boolean",
+      "cicd": "boolean"
+    },
+    "deployment": {
+      "envConfig": "boolean",
+      "dockerfile": "boolean",
+      "infraAsCode": "boolean",
+      "productionOptimized": "boolean"
+    },
+    "security": {
+      "dependencyScanning": "boolean",
+      "secretManagement": "boolean",
+      "authentication": "boolean"
+    }
+  },
+  "quality": {
+    "maintenance": {
+      "commitFrequency": {
+        "type": "scale",
+        "range": [1, 5]
+      },
+      "issueResponseTime": {
+        "type": "scale",
+        "range": [1, 5]
+      }
+    },
+    "documentation": {
+      "readmeCompleteness": {
+        "type": "scale",
+        "range": [1, 5]
+      },
+      "setupInstructions": {
+        "type": "scale",
+        "range": [1, 5]
+      },
+      "exampleCoverage": {
+        "type": "scale",
+        "range": [1, 5]
+      }
+    }
+  },
+  "other": {
+    "type": "object",
+    "description": "Important information that doesn't fit elsewhere"
+  }
+}
+``` 

@@ -26,3 +26,19 @@ analyzed-starters/
 github-starters/
 npm-starters/
 cleaned-starters/
+
+# Build output
+build/
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+
+# Remix site
+remix-site/node_modules
+remix-site/.cache
+remix-site/build
+remix-site/.env
+remix-site/public/importable-starters
