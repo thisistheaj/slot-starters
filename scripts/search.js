@@ -1,6 +1,3 @@
-import fs from 'fs/promises';
-import path from 'path';
-
 function calculateScore(analysis) {
   if (!analysis.quality) return 0;
   
@@ -72,19 +69,23 @@ function countMatches(analysis, query) {
 }
 
 async function searchStarters(query = {}, limit = 10) {
-  const cleanedDir = path.join(process.cwd(), 'cleaned-starters');
-  const files = await fs.readdir(cleanedDir);
-
   const results = [];
   
-  for (const file of files) {
-    if (!file.endsWith('.json')) continue;
+  try {
+    // Import all starters dynamically using a for loop
+    const starterModules = [];
+    const indexModule = await import('../importable-starters/index.js');
     
-    try {
-      const analysis = JSON.parse(
-        await fs.readFile(path.join(cleanedDir, file), 'utf8')
-      );
-      
+    for (const [name, moduleExport] of Object.entries(indexModule)) {
+      try {
+        // moduleExport is already the default export, no need to await or check .default
+        starterModules.push(moduleExport);
+      } catch (err) {
+      }
+    }
+
+    // Process each starter
+    for (const analysis of starterModules) {
       const matchInfo = countMatches(analysis, query);
       if (matchInfo.matches > 0) {
         results.push({
@@ -95,45 +96,45 @@ async function searchStarters(query = {}, limit = 10) {
           _qualityScore: calculateScore(analysis)
         });
       }
-    } catch (err) {
-      console.error(`Error processing ${file}: ${err.message}`);
     }
+
+    // Group by number of matches
+    const grouped = results.reduce((acc, result) => {
+      const matches = result._matches;
+      if (!acc[matches]) acc[matches] = [];
+      acc[matches].push(result);
+      return acc;
+    }, {});
+
+    // Sort each group by quality score
+    Object.values(grouped).forEach(group => {
+      group.sort((a, b) => b._qualityScore - a._qualityScore);
+    });
+
+    // Take results in order of matches, then quality
+    const ordered = Object.entries(grouped)
+      .sort(([matchesA], [matchesB]) => Number(matchesB) - Number(matchesA))
+      .flatMap(([_, group]) => group);
+
+    return ordered.slice(0, limit).map(result => ({
+      ...result,
+      _score: result._qualityScore,
+      _matchedCount: `${result._matches}/${result._total}`
+    }));
+  } catch (err) {
+    console.error(`Error in searchStarters: ${err.message}`);
+    throw err;
   }
-
-  // Group by number of matches
-  const grouped = results.reduce((acc, result) => {
-    const matches = result._matches;
-    if (!acc[matches]) acc[matches] = [];
-    acc[matches].push(result);
-    return acc;
-  }, {});
-
-  // Sort each group by quality score
-  Object.values(grouped).forEach(group => {
-    group.sort((a, b) => b._qualityScore - a._qualityScore);
-  });
-
-  // Take results in order of matches, then quality
-  const ordered = Object.entries(grouped)
-    .sort(([matchesA], [matchesB]) => Number(matchesB) - Number(matchesA))
-    .flatMap(([_, group]) => group);
-
-  return ordered.slice(0, limit).map(result => ({
-    ...result,
-    _score: result._qualityScore,
-    _matchedCount: `${result._matches}/${result._total}`
-  }));
 }
 
 export async function formatSearchResults(options) {
     const query = {
-        technologies: options.technologies,
-        purposes: options.purposes,
-        features: options.features
+        technologies: options.technologies || [],
+        purposes: options.purposes || [],
+        features: options.features || []
     };
 
     const results = await searchStarters(query, options.limit);
-
     return results.map(result => ({
         metadata: {
             name: result.metadata.name,
