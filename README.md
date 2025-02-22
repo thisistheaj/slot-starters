@@ -1,5 +1,7 @@
 # Slot: A Place to Put Your Tokens
 
+![Slot Logo|width=300](./logo.png)
+
 Slot is an MCP (Model Context Protocol) server that enables developers to search and discover starter templates directly from within Claude Desktop and other LLM applications. By integrating with your AI assistant's workflow, Slot helps you find the perfect starter template while discussing architecture and project setup.
 
 Think of it as an intelligent template discovery system that:

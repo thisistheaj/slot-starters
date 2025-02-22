@@ -23,7 +23,7 @@ README.md
 docsite:
 -[x] none!
 readme:
--[ ] mermaid diagram colors in GH
+-[x] mermaid diagram colors in GH
 -[ ] add logo to README
 explore:
 -[ ] start explore page at 3 or 4 stars
