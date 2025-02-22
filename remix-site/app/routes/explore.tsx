@@ -5,6 +5,8 @@ import { QualitySelector } from "~/components/quality-selector";
 import { TagCloud } from "~/components/tag-cloud";
 import { TemplateCard } from "~/components/template-card";
 
+const MIN_QUALITY_SCORE = 3;
+
 export const meta: MetaFunction = () => {
   return [
     { title: "Explore Templates - Slot" },
@@ -37,13 +39,13 @@ type Template = {
 };
 
 function getQualityScore(quality: Template["quality"]) {
-  if (!quality) return 1;
+  if (!quality) return MIN_QUALITY_SCORE;
   const scores = [
-    quality.maintenance?.commitFrequency || 1,
-    quality.maintenance?.issueResponseTime || 1,
-    quality.documentation?.readmeCompleteness || 1,
-    quality.documentation?.setupInstructions || 1,
-    quality.documentation?.exampleCoverage || 1,
+    quality.maintenance?.commitFrequency || MIN_QUALITY_SCORE,
+    quality.maintenance?.issueResponseTime || MIN_QUALITY_SCORE,
+    quality.documentation?.readmeCompleteness || MIN_QUALITY_SCORE,
+    quality.documentation?.setupInstructions || MIN_QUALITY_SCORE,
+    quality.documentation?.exampleCoverage || MIN_QUALITY_SCORE,
   ];
   return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
 }
@@ -75,7 +77,7 @@ export default function Explore() {
   const [loading, setLoading] = useState(true);
   const [selectedTechs, setSelectedTechs] = useState<Set<string>>(new Set());
   const [selectedFeatures, setSelectedFeatures] = useState<Set<string>>(new Set());
-  const [minQuality, setMinQuality] = useState(1);
+  const [minQuality, setMinQuality] = useState(MIN_QUALITY_SCORE);
 
   // Load templates
   useEffect(() => {

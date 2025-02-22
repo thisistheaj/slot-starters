@@ -1,4 +1,5 @@
 import { cn } from "~/lib/utils";
+import { ExternalLink } from "lucide-react";
 
 interface TemplateCardProps {
   template: {
@@ -31,9 +32,9 @@ export function TemplateCard({ template, qualityScore, selectedTechs, matchScore
   return (
     <div className="rounded-lg border bg-card">
       <div className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-semibold">{template.metadata.name}</h3>
-          <div className="flex items-center gap-2">
+        <div className="flex items-start justify-between gap-4 mb-4">
+          <h3 className="font-semibold break-words">{template.metadata.name}</h3>
+          <div className="flex items-center gap-2 flex-shrink-0">
             {matchScore && (
               <div 
                 className={cn(
@@ -68,7 +69,9 @@ export function TemplateCard({ template, qualityScore, selectedTechs, matchScore
               key={tech}
               className={cn(
                 "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors",
-                selectedTechs.has(tech) && "border-primary text-primary"
+                selectedTechs.has(tech)
+                  ? "border-primary bg-primary/10 text-primary"
+                  : "border-muted bg-muted/50 text-muted-foreground hover:bg-muted/80"
               )}
             >
               {tech}
@@ -79,9 +82,10 @@ export function TemplateCard({ template, qualityScore, selectedTechs, matchScore
           href={template.metadata.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-secondary hover:bg-secondary/80 px-4 py-2 text-sm font-medium text-secondary-foreground shadow transition-colors"
         >
-          View Template
+          View
+          <ExternalLink className="h-4 w-4" />
         </a>
       </div>
     </div>

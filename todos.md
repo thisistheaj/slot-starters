@@ -24,22 +24,24 @@ docsite:
 -[x] none!
 readme:
 -[x] mermaid diagram colors in GH
--[ ] add logo to README
+-[x] add logo to README
 explore:
--[ ] start explore page at 3 or 4 stars
--[ ] word wrap card titls in explore page
--[ ] icon in view button on explore page
+-[x] start explore page at 3 or 4 stars
+-[x] word wrap card titls in explore page
+-[x] view button color
+-[x] icon in view button on explore page
+-[x] 'Search X' => 'Filter X'
+-[x] more contrastful tags
+landing page:
+-[x] 3 steps in quickstart
+-[ ] theme with color scheme
+
+# enhancements:
+-[x] remove openai dependency for MCP setup?
 -[ ] sections in features cloud (e.g. 'development', 'testing', 'security', etc.)
 -[ ] how to get sections in technologies cloud (e.g. language, database, etc.)?
 -[ ] how to normalize technologie (e.g. 'nodejs', 'node.js', 'node', etc.)?
--[ ] 'Search X' => 'Filter X'
 -[ ] how to generate icons or avatars, per project?
--[ ] more contrastful tags
--[ ] theme with color scheme
--[ ] view button color
-landing page:
--[ ] 3 steps in quickstart
--[ ] remove openai dependency for MCP setup?
 
 # todos:
 -[x] push to GH

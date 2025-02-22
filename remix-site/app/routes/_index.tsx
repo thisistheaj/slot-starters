@@ -19,13 +19,16 @@ export default function Index() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="container py-24 space-y-8 text-center">
+        <section className="container py-24 space-y-8 text-center bg-background">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            Slot Starters: A Place to Put Your Tokens
+            Slot Starters:
           </h1>
+          <h2 className="text-2xl tracking-tight text-gray-400">
+            Find the perfect template — and slot it in
+          </h2>
           <img src="/logo.png" alt="Slot Logo" className="mx-auto h-96 w-96" />
           <p className="mx-auto max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            Find the perfect starter template while discussing architecture and project setup with your AI assistant.
+            Slot is an MCP server that allows LLMs to find you the perfect template for your next AI-first project based on the requirements and preferences you describe.
           </p>
           <div className="flex justify-center gap-4">
             <a href="#install" className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90">
@@ -38,114 +41,110 @@ export default function Index() {
         </section>
 
         {/* Features Section */}
-        <section className="container py-24 space-y-8">
-          <h2 className="text-3xl font-bold tracking-tight text-center mb-12">Why Slot?</h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div className="rounded-lg border bg-card p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <Brain className="h-6 w-6" />
-                <h3 className="font-semibold">AI-Powered Discovery</h3>
+        <section className="py-24 space-y-8 bg-accent/5">
+          <div className="container">
+            <h2 className="text-3xl font-bold tracking-tight text-center mb-12">Why Slot?</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              <div className="rounded-lg border bg-card p-8 text-center">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="rounded-full bg-primary/10 p-4 mb-2">
+                    <Brain className="h-10 w-10 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-lg">AI-Powered Discovery</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Find relevant templates through natural conversations with your AI assistant
+                  </p>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground">
-                Find relevant templates through natural conversations with your AI assistant
-              </p>
-            </div>
-            <div className="rounded-lg border bg-card p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <Search className="h-6 w-6" />
-                <h3 className="font-semibold">Smart Analysis</h3>
+              <div className="rounded-lg border bg-card p-8 text-center">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="rounded-full bg-primary/10 p-4 mb-2">
+                    <Search className="h-10 w-10 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-lg">Smart Analysis</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Understand template features, quality metrics, and tradeoffs
+                  </p>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground">
-                Understand template features, quality metrics, and tradeoffs
-              </p>
-            </div>
-            <div className="rounded-lg border bg-card p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <Sparkles className="h-6 w-6" />
-                <h3 className="font-semibold">Informed Decisions</h3>
+              <div className="rounded-lg border bg-card p-8 text-center">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="rounded-full bg-primary/10 p-4 mb-2">
+                    <Sparkles className="h-10 w-10 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-lg">Informed Decisions</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Make better choices with AI-guided template selection
+                  </p>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground">
-                Make better choices with AI-guided template selection
-              </p>
             </div>
           </div>
         </section>
 
         {/* Installation Section */}
-        <section id="install" className="container py-24 space-y-8">
-          <h2 className="text-3xl font-bold tracking-tight text-center mb-12">Installation</h2>
-          <div className="mx-auto max-w-3xl rounded-lg border bg-card">
-            <div className="p-6 space-y-6">
-              <div className="space-y-4">
-                <h3 className="font-semibold">1. Clone the repository and install dependencies</h3>
-                <pre className="relative rounded bg-muted p-4 overflow-x-auto">
-                  <code className="text-sm font-mono">
-                    {`git clone https://github.com/thisistheaj/slot-starters.git
+        <section id="install" className="py-24 space-y-8 bg-background">
+          <div className="container">
+            <h2 className="text-3xl font-bold tracking-tight text-center mb-12">MCP Installation</h2>
+            <div className="mx-auto max-w-3xl rounded-lg border bg-card">
+              <div className="p-6 space-y-6">
+                <div className="space-y-4">
+                  <h3 className="font-semibold">1. Clone the repository and install dependencies</h3>
+                  <pre className="relative rounded bg-muted p-4 overflow-x-auto">
+                    <code className="text-sm font-mono">
+                      {`git clone https://github.com/thisistheaj/slot-starters.git
 cd slot-starters
 npm install`}
-                  </code>
-                  <button 
-                    onClick={() => copyCode(
-                      "git clone https://github.com/thisistheaj/slot-starters.git\ncd slot-starters\nnpm install"
-                    )}
-                    className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
-                  >
-                    Copy
-                  </button>
-                </pre>
-              </div>
+                    </code>
+                    <button 
+                      onClick={() => copyCode(
+                        "git clone https://github.com/thisistheaj/slot-starters.git\ncd slot-starters\nnpm install"
+                      )}
+                      className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
+                    >
+                      Copy
+                    </button>
+                  </pre>
+                </div>
 
-              <div className="space-y-4">
-                <h3 className="font-semibold">2. Set up your configuration</h3>
-                <pre className="relative rounded bg-muted p-4 overflow-x-auto">
-                  <code className="text-sm font-mono">
-                    {`# Set your OpenAI API key
-export OPENAI_API_KEY="your-api-key-here"
-
-# Create Claude Desktop config with the key
-mkdir -p ~/Library/Application\\ Support/Claude && cat > ~/Library/Application\\ Support/Claude/claude_desktop_config.json << EOL
+                <div className="space-y-4">
+                  <h3 className="font-semibold">2. Add the Slot MCP server to your Claude Desktop config</h3>
+                  <pre className="relative rounded bg-muted p-4 overflow-x-auto">
+                    <code className="text-sm font-mono">
+                      {`mkdir -p ~/Library/Application\\ Support/Claude && cat > ~/Library/Application\\ Support/Claude/claude_desktop_config.json << EOL
 {
   "mcpServers": {
     "slot-starters": {
       "command": "node",
       "args": [
         "$(pwd)/server.js"
-      ],
-      "env": {
-        "OPENAI_API_KEY": "$OPENAI_API_KEY"
-      }
+      ]
     }
   }
 }
 EOL`}
-                  </code>
-                  <button 
-                    onClick={() => copyCode(
-                      `# Set your OpenAI API key
-export OPENAI_API_KEY="your-api-key-here"
-
-# Create Claude Desktop config with the key
-mkdir -p ~/Library/Application\\ Support/Claude && cat > ~/Library/Application\\ Support/Claude/claude_desktop_config.json << EOL
+                    </code>
+                    <button 
+                      onClick={() => copyCode(
+                        `mkdir -p ~/Library/Application\\ Support/Claude && cat > ~/Library/Application\\ Support/Claude/claude_desktop_config.json << EOL
 {
   "mcpServers": {
     "slot-starters": {
       "command": "node",
       "args": [
         "$(pwd)/server.js"
-      ],
-      "env": {
-        "OPENAI_API_KEY": "$OPENAI_API_KEY"
-      }
+      ]
     }
   }
 }
 EOL`
-                    )}
-                    className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
-                  >
-                    Copy
-                  </button>
-                </pre>
+                      )}
+                      className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
+                    >
+                      Copy
+                    </button>
+                  </pre>
+                </div>
               </div>
             </div>
           </div>

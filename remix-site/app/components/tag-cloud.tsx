@@ -32,7 +32,7 @@ export function TagCloud({
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder={`Search ${title.toLowerCase()}...`}
+          placeholder={`Filter ${title.toLowerCase()}...`}
           className="w-full rounded-md border bg-background px-3 py-2 text-sm"
         />
         {search && (
