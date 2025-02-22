@@ -1,5 +1,6 @@
 import { cn } from "~/lib/utils";
 import { ExternalLink } from "lucide-react";
+import { Avatar } from "./avatar";
 
 interface TemplateCardProps {
   template: {
@@ -31,39 +32,47 @@ interface TemplateCardProps {
 export function TemplateCard({ template, qualityScore, selectedTechs, matchScore }: TemplateCardProps) {
   return (
     <div className="rounded-lg border bg-card">
-      <div className="p-6">
-        <div className="flex items-start justify-between gap-4 mb-4">
-          <h3 className="font-semibold break-words">{template.metadata.name}</h3>
-          <div className="flex items-center gap-2 flex-shrink-0">
-            {matchScore && (
-              <div 
-                className={cn(
-                  "text-sm font-medium rounded-full px-2 py-1",
-                  matchScore.matched === matchScore.total 
-                    ? "bg-green-500/20 text-green-500"
-                    : matchScore.matched > matchScore.total / 2
-                    ? "bg-yellow-500/20 text-yellow-500"
-                    : "bg-red-500/20 text-red-500"
+      <div className="flex flex-col h-full p-6">
+        {/* Header section with avatar and metadata */}
+        <div className="flex items-start gap-4">
+          <Avatar name={template.metadata.name} className="flex-shrink-0" />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-4">
+              <h3 className="font-semibold break-words">{template.metadata.name}</h3>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                {matchScore && (
+                  <div 
+                    className={cn(
+                      "text-sm font-medium rounded-full px-2 py-1",
+                      matchScore.matched === matchScore.total 
+                        ? "bg-green-500/20 text-green-500"
+                        : matchScore.matched > matchScore.total / 2
+                        ? "bg-yellow-500/20 text-yellow-500"
+                        : "bg-red-500/20 text-red-500"
+                    )}
+                  >
+                    {matchScore.matched}/{matchScore.total} matches
+                  </div>
                 )}
-              >
-                {matchScore.matched}/{matchScore.total} matches
+                <div 
+                  className={cn(
+                    "text-sm font-medium rounded-full px-2 py-1",
+                    qualityScore >= 4 
+                      ? "bg-green-500/20 text-green-500"
+                      : qualityScore >= 3
+                      ? "bg-yellow-500/20 text-yellow-500"
+                      : "bg-red-500/20 text-red-500"
+                  )}
+                >
+                  Quality: {qualityScore}/5
+                </div>
               </div>
-            )}
-            <div 
-              className={cn(
-                "text-sm font-medium rounded-full px-2 py-1",
-                qualityScore >= 4 
-                  ? "bg-green-500/20 text-green-500"
-                  : qualityScore >= 3
-                  ? "bg-yellow-500/20 text-yellow-500"
-                  : "bg-red-500/20 text-red-500"
-              )}
-            >
-              Quality: {qualityScore}/5
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap gap-2 mb-4">
+
+        {/* Technologies cloud */}
+        <div className="flex flex-wrap gap-2 mt-4">
           {template.technologies?.map(tech => (
             <span
               key={tech}
@@ -78,15 +87,19 @@ export function TemplateCard({ template, qualityScore, selectedTechs, matchScore
             </span>
           ))}
         </div>
-        <a
-          href={template.metadata.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 rounded-md bg-secondary hover:bg-secondary/80 px-4 py-2 text-sm font-medium text-secondary-foreground shadow transition-colors"
-        >
-          View
-          <ExternalLink className="h-4 w-4" />
-        </a>
+
+        {/* View button */}
+        <div className="flex justify-end mt-4">
+          <a
+            href={template.metadata.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-secondary hover:bg-secondary/80 px-4 py-2 text-sm font-medium text-secondary-foreground shadow transition-colors"
+          >
+            View
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
       </div>
     </div>
   );

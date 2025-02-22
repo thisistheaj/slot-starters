@@ -38,10 +38,10 @@ landing page:
 
 # enhancements:
 -[x] remove openai dependency for MCP setup?
--[ ] sections in features cloud (e.g. 'development', 'testing', 'security', etc.)
+-[x] sections in features cloud (e.g. 'development', 'testing', 'security', etc.)
+-[X] how to generate icons or avatars, per project?
 -[ ] how to get sections in technologies cloud (e.g. language, database, etc.)?
--[ ] how to normalize technologie (e.g. 'nodejs', 'node.js', 'node', etc.)?
--[ ] how to generate icons or avatars, per project?
+-[ ] how to normalize technologies (e.g. 'nodejs', 'node.js', 'node', etc.)?
 
 # todos:
 -[x] push to GH

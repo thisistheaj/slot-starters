@@ -46,7 +46,7 @@ export function TagCloud({
       </div>
 
       {/* Tags */}
-      <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto p-2">
+      <div className="flex flex-wrap gap-2 max-h-96 overflow-y-auto p-2">
         {filteredTags.map((tag) => (
           <button
             key={tag}

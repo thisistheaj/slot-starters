@@ -3,6 +3,7 @@ import type { MetaFunction } from "@remix-run/node";
 import { Header } from "~/components/header";
 import { QualitySelector } from "~/components/quality-selector";
 import { TagCloud } from "~/components/tag-cloud";
+import { FeatureTagCloud } from "~/components/feature-tag-cloud";
 import { TemplateCard } from "~/components/template-card";
 
 const MIN_QUALITY_SCORE = 3;
@@ -167,9 +168,8 @@ export default function Explore() {
                   }}
                 />
 
-                <TagCloud
-                  title="Features"
-                  tags={Array.from(features)}
+                <FeatureTagCloud
+                  features={features}
                   selectedTags={selectedFeatures}
                   onTagToggle={(feature) => {
                     const newSelected = new Set(selectedFeatures);
@@ -180,7 +180,6 @@ export default function Explore() {
                     }
                     setSelectedFeatures(newSelected);
                   }}
-                  formatTag={(feature) => feature.replace(".", ": ")}
                 />
               </div>
 
