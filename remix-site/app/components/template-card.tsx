@@ -31,7 +31,7 @@ interface TemplateCardProps {
 
 export function TemplateCard({ template, qualityScore, selectedTechs, matchScore }: TemplateCardProps) {
   return (
-    <div className="rounded-lg border bg-card h-full">
+    <div className="rounded-lg border bg-[#F5F1EA] h-full">
       <div className="flex flex-col h-full p-6">
         {/* Header section with avatar and metadata */}
         <div className="flex items-start gap-4">

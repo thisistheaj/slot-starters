@@ -45,7 +45,7 @@ export default function Index() {
           <div className="container">
             <h2 className="text-3xl font-bold tracking-tight text-center mb-12 text-primary-foreground">Why Slot?</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              <div className="rounded-lg border-0 bg-white/90 p-8 text-center shadow-sm">
+              <div className="rounded-lg border-0 bg-[#F5F1EA] p-8 text-center shadow-sm">
                 <div className="flex flex-col items-center gap-4">
                   <div className="rounded-full bg-primary/10 p-4 mb-2">
                     <Brain className="h-10 w-10 text-primary" />
@@ -56,7 +56,7 @@ export default function Index() {
                   </p>
                 </div>
               </div>
-              <div className="rounded-lg border-0 bg-white/90 p-8 text-center shadow-sm">
+              <div className="rounded-lg border-0 bg-[#F5F1EA] p-8 text-center shadow-sm">
                 <div className="flex flex-col items-center gap-4">
                   <div className="rounded-full bg-primary/10 p-4 mb-2">
                     <Search className="h-10 w-10 text-primary" />
@@ -67,7 +67,7 @@ export default function Index() {
                   </p>
                 </div>
               </div>
-              <div className="rounded-lg border-0 bg-white/90 p-8 text-center shadow-sm">
+              <div className="rounded-lg border-0 bg-[#F5F1EA] p-8 text-center shadow-sm">
                 <div className="flex flex-col items-center gap-4">
                   <div className="rounded-full bg-primary/10 p-4 mb-2">
                     <Sparkles className="h-10 w-10 text-primary" />
@@ -86,7 +86,7 @@ export default function Index() {
         <section id="install" className="py-24 space-y-8 bg-background">
           <div className="container">
             <h2 className="text-3xl font-bold tracking-tight text-center mb-12">MCP Installation</h2>
-            <div className="mx-auto max-w-3xl rounded-lg border bg-card">
+            <div className="mx-auto max-w-3xl rounded-lg border bg-[#F5F1EA]">
               <div className="p-6 space-y-6">
                 <div className="space-y-4">
                   <h3 className="font-semibold">1. Clone the repository and install dependencies</h3>

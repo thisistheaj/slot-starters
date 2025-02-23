@@ -151,7 +151,7 @@ export default function Explore() {
 
           {/* Filters */}
           <div className="mb-8">
-            <div className="rounded-lg border bg-card p-6 space-y-6">
+            <div className="rounded-lg border bg-[#F5F1EA] p-6 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <TagCloud
                   title="Technologies"
