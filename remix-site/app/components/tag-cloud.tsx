@@ -33,12 +33,12 @@ export function TagCloud({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder={`Filter ${title.toLowerCase()}...`}
-          className="w-full rounded-md border bg-background px-3 py-2 text-sm"
+          className="w-full rounded-md border bg-white/90 px-3 py-2 text-sm text-foreground placeholder:text-foreground/60 focus:outline-none focus:ring-2 focus:ring-ring"
         />
         {search && (
           <button
             onClick={() => setSearch("")}
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-foreground/60 hover:text-foreground"
           >
             Clear
           </button>

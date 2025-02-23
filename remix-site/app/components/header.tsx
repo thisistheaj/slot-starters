@@ -10,7 +10,7 @@ export function Header() {
           to="/" 
           className="mr-6 flex items-center space-x-2"
         >
-          <span className="font-bold">Slot Starters</span>
+          <span className="font-bold">🕹️ Slot Starters</span>
         </Link>
         <nav className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="flex items-center gap-4">

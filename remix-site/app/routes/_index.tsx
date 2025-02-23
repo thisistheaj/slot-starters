@@ -23,7 +23,7 @@ export default function Index() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
             Slot Starters:
           </h1>
-          <h2 className="text-2xl tracking-tight text-gray-400">
+          <h2 className="text-2xl tracking-tight">
             Find the perfect template — and slot it in
           </h2>
           <img src="/logo.png" alt="Slot Logo" className="mx-auto h-96 w-96" />
@@ -41,11 +41,11 @@ export default function Index() {
         </section>
 
         {/* Features Section */}
-        <section className="py-24 space-y-8 bg-accent/5">
+        <section className="py-24 space-y-8 bg-[#B5AA99]">
           <div className="container">
-            <h2 className="text-3xl font-bold tracking-tight text-center mb-12">Why Slot?</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-center mb-12 text-primary-foreground">Why Slot?</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              <div className="rounded-lg border bg-card p-8 text-center">
+              <div className="rounded-lg border-0 bg-white/90 p-8 text-center shadow-sm">
                 <div className="flex flex-col items-center gap-4">
                   <div className="rounded-full bg-primary/10 p-4 mb-2">
                     <Brain className="h-10 w-10 text-primary" />
@@ -56,7 +56,7 @@ export default function Index() {
                   </p>
                 </div>
               </div>
-              <div className="rounded-lg border bg-card p-8 text-center">
+              <div className="rounded-lg border-0 bg-white/90 p-8 text-center shadow-sm">
                 <div className="flex flex-col items-center gap-4">
                   <div className="rounded-full bg-primary/10 p-4 mb-2">
                     <Search className="h-10 w-10 text-primary" />
@@ -67,7 +67,7 @@ export default function Index() {
                   </p>
                 </div>
               </div>
-              <div className="rounded-lg border bg-card p-8 text-center">
+              <div className="rounded-lg border-0 bg-white/90 p-8 text-center shadow-sm">
                 <div className="flex flex-col items-center gap-4">
                   <div className="rounded-full bg-primary/10 p-4 mb-2">
                     <Sparkles className="h-10 w-10 text-primary" />
@@ -154,7 +154,7 @@ EOL`
       <footer className="border-t py-6 md:py-0">
         <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            Made with ❤️ by the Slot team
+            Made with 💛 by the Slot team
           </p>
         </div>
       </footer>

@@ -31,7 +31,7 @@ interface TemplateCardProps {
 
 export function TemplateCard({ template, qualityScore, selectedTechs, matchScore }: TemplateCardProps) {
   return (
-    <div className="rounded-lg border bg-card">
+    <div className="rounded-lg border bg-card h-full">
       <div className="flex flex-col h-full p-6">
         {/* Header section with avatar and metadata */}
         <div className="flex items-start gap-4">
@@ -72,12 +72,12 @@ export function TemplateCard({ template, qualityScore, selectedTechs, matchScore
         </div>
 
         {/* Technologies cloud */}
-        <div className="flex flex-wrap gap-2 mt-4">
+        <div className="flex flex-wrap gap-2 mt-4 flex-1">
           {template.technologies?.map(tech => (
             <span
               key={tech}
               className={cn(
-                "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors",
+                "inline-flex h-6 items-center whitespace-nowrap rounded-full border px-2.5 text-xs font-semibold transition-colors",
                 selectedTechs.has(tech)
                   ? "border-primary bg-primary/10 text-primary"
                   : "border-muted bg-muted/50 text-muted-foreground hover:bg-muted/80"
@@ -89,12 +89,12 @@ export function TemplateCard({ template, qualityScore, selectedTechs, matchScore
         </div>
 
         {/* View button */}
-        <div className="flex justify-end mt-4">
+        <div className="flex justify-end mt-4 pt-4 border-t">
           <a
             href={template.metadata.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-md bg-secondary hover:bg-secondary/80 px-4 py-2 text-sm font-medium text-secondary-foreground shadow transition-colors"
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-primary hover:bg-primary/90 px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors"
           >
             View
             <ExternalLink className="h-4 w-4" />

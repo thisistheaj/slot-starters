@@ -16,14 +16,14 @@ export function Avatar({ name, className }: AvatarProps) {
 
   // Generate a deterministic background color based on the name
   const colors = [
-    'bg-blue-500',
-    'bg-green-500',
-    'bg-yellow-500',
-    'bg-purple-500',
-    'bg-pink-500',
-    'bg-indigo-500',
-    'bg-red-500',
-    'bg-orange-500'
+    'bg-[#8B4513]', // Saddle Brown
+    'bg-[#556B2F]', // Dark Olive Green
+    'bg-[#8B7355]', // Light Brown
+    'bg-[#6B4423]', // Brown
+    'bg-[#6B8E23]', // Olive Drab
+    'bg-[#CD853F]', // Peru
+    'bg-[#8B6914]', // Dark Goldenrod
+    'bg-[#6B4423]', // Russet
   ];
   
   const colorIndex = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % colors.length;

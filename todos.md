@@ -34,7 +34,7 @@ explore:
 -[x] more contrastful tags
 landing page:
 -[x] 3 steps in quickstart
--[ ] theme with color scheme
+-[x] theme with color scheme
 
 # enhancements:
 -[x] remove openai dependency for MCP setup?

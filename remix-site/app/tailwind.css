@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 37 23% 75%;
+    --foreground: 37 23% 25%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 37 23% 25%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --popover-foreground: 37 23% 25%;
+    --primary: 37 23% 40%;
+    --primary-foreground: 37 23% 95%;
+    --secondary: 37 23% 85%;
+    --secondary-foreground: 37 23% 40%;
+    --muted: 37 23% 85%;
+    --muted-foreground: 37 23% 40%;
+    --accent: 37 23% 40%;
+    --accent-foreground: 37 23% 95%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --border: 37 23% 65%;
+    --input: 37 23% 65%;
+    --ring: 37 23% 40%;
     --radius: 0.5rem;
   }
  
@@ -55,14 +55,5 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-}
-
-html,
-body {
-  @apply bg-white dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
   }
 }

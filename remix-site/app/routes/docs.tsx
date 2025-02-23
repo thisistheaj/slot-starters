@@ -10,7 +10,7 @@ export default function DocsLayout() {
       <Header />
       <div className="container flex-1">
         <div className="grid grid-cols-[220px_1fr] gap-6 py-8">
-          <aside className="fixed w-[220px] overflow-y-auto">
+          <aside className="fixed w-[220px] overflow-y-auto p-4 rounded-lg bg-[#C6AF91]">
             <DocsNav currentPath={location.pathname} />
           </aside>
           <main className="col-start-2 min-w-0">
