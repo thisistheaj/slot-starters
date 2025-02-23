@@ -33,15 +33,19 @@ export default function ScrapingDocs() {
         <div className="space-y-3">
           <div>
             <code className="text-sm bg-muted px-2 py-1 rounded">-s, --stars &lt;number&gt;</code>
-            <p className="text-sm text-muted-foreground mt-1">Minimum stars (default: 50)</p>
+            <p className="text-sm text-muted-foreground mt-1">Minimum stars for GitHub repositories</p>
           </div>
           <div>
             <code className="text-sm bg-muted px-2 py-1 rounded">-t, --topics &lt;items&gt;</code>
-            <p className="text-sm text-muted-foreground mt-1">Topics to search for (comma-separated)</p>
+            <p className="text-sm text-muted-foreground mt-1">GitHub topics to search for (comma-separated)</p>
           </div>
           <div>
             <code className="text-sm bg-muted px-2 py-1 rounded">-L, --languages &lt;items&gt;</code>
-            <p className="text-sm text-muted-foreground mt-1">Languages to search for (comma-separated)</p>
+            <p className="text-sm text-muted-foreground mt-1">GitHub languages to search for (comma-separated)</p>
+          </div>
+          <div>
+            <code className="text-sm bg-muted px-2 py-1 rounded">-k, --keywords &lt;items&gt;</code>
+            <p className="text-sm text-muted-foreground mt-1">NPM keywords to search for (comma-separated)</p>
           </div>
           <div>
             <code className="text-sm bg-muted px-2 py-1 rounded">-b, --batch &lt;size&gt;</code>
@@ -49,7 +53,7 @@ export default function ScrapingDocs() {
           </div>
           <div>
             <code className="text-sm bg-muted px-2 py-1 rounded">-d, --delay &lt;ms&gt;</code>
-            <p className="text-sm text-muted-foreground mt-1">Delay between requests</p>
+            <p className="text-sm text-muted-foreground mt-1">Delay between requests in milliseconds</p>
           </div>
           <div>
             <code className="text-sm bg-muted px-2 py-1 rounded">-r, --rph &lt;limit&gt;</code>
@@ -57,20 +61,23 @@ export default function ScrapingDocs() {
           </div>
           <div>
             <code className="text-sm bg-muted px-2 py-1 rounded">-l, --limit &lt;number&gt;</code>
-            <p className="text-sm text-muted-foreground mt-1">Maximum results to fetch</p>
+            <p className="text-sm text-muted-foreground mt-1">Maximum number of results to fetch</p>
           </div>
         </div>
 
         <h3 className="text-xl font-semibold mt-6">Examples</h3>
         <pre className="p-4 rounded-lg bg-muted overflow-auto">
-          <code>{`# Scrape React starters with minimum 100 stars
+          <code>{`# Scrape React starters from GitHub
 slot scrape github $GITHUB_TOKEN -s 100 -t react-starter,react-boilerplate -L typescript
 
 # Scrape Next.js templates with rate limiting
 slot scrape github $GITHUB_TOKEN -t nextjs,starter -r 100 -d 1000
 
-# Scrape top 50 Vue.js starters
-slot scrape github $GITHUB_TOKEN -t vue,starter -l 50 -s 200`}</code>
+# Scrape NPM packages with keywords
+slot scrape npm -k react-starter,react-boilerplate -l 50
+
+# Scrape NPM packages with rate limiting
+slot scrape npm -k nextjs-starter -b 10 -r 100`}</code>
         </pre>
 
         <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-8">NPM Scraping</h2>
@@ -88,7 +95,7 @@ slot scrape github $GITHUB_TOKEN -t vue,starter -l 50 -s 200`}</code>
         <div className="space-y-3">
           <div>
             <code className="text-sm bg-muted px-2 py-1 rounded">-k, --keywords &lt;items&gt;</code>
-            <p className="text-sm text-muted-foreground mt-1">Keywords to search for (comma-separated)</p>
+            <p className="text-sm text-muted-foreground mt-1">NPM keywords to search for (comma-separated)</p>
           </div>
           <div>
             <code className="text-sm bg-muted px-2 py-1 rounded">-b, --batch &lt;size&gt;</code>

@@ -9,9 +9,8 @@ import {
   Settings, 
   FileCode, 
   Microscope,
-  Wrench,
-  Database,
   Bot,
+  Gauge,
   Compass
 } from "lucide-react";
 
@@ -21,33 +20,31 @@ const docsNav = [
     icon: <Home className="h-4 w-4" />,
     items: [
       { title: "Overview", href: "/docs", icon: <Compass className="h-4 w-4" /> },
-      { title: "Installation", href: "/docs/installation", icon: <Download className="h-4 w-4" /> },
+      { title: "Quickstart", href: "/docs/quickstart", icon: <Download className="h-4 w-4" /> },
+      { title: "Ontology", href: "/docs/ontology", icon: <Brain className="h-4 w-4" /> },
+      { title: "Quality Metrics", href: "/docs/quality-metrics", icon: <Gauge className="h-4 w-4" /> },
     ],
   },
   {
-    title: "Features",
-    icon: <Wrench className="h-4 w-4" />,
+    title: "MCP",
+    icon: <Bot className="h-4 w-4" />,
     items: [
-      { title: "Template Discovery", href: "/docs/discovery", icon: <SearchIcon className="h-4 w-4" /> },
-      { title: "AI Analysis", href: "/docs/analysis", icon: <Brain className="h-4 w-4" /> },
-      { title: "Search Engine", href: "/docs/search", icon: <Database className="h-4 w-4" /> },
+      { title: "Overview", href: "/docs/mcp/overview", icon: <Compass className="h-4 w-4" /> },
+      { title: "Installation", href: "/docs/mcp/installation", icon: <Download className="h-4 w-4" /> },
+      { title: "Search", href: "/docs/mcp/search", icon: <SearchIcon className="h-4 w-4" /> },
+      { title: "Configuration", href: "/docs/mcp/config", icon: <Settings className="h-4 w-4" /> },
     ],
   },
   {
     title: "CLI",
     icon: <Terminal className="h-4 w-4" />,
     items: [
+      { title: "Overview", href: "/docs/cli/overview", icon: <Compass className="h-4 w-4" /> },
+      { title: "Installation", href: "/docs/cli/installation", icon: <Download className="h-4 w-4" /> },
       { title: "Scraping Starters", href: "/docs/cli/scraping", icon: <FileCode className="h-4 w-4" /> },
       { title: "Analyzing Starters", href: "/docs/cli/analyzing", icon: <Microscope className="h-4 w-4" /> },
       { title: "Searching Starters", href: "/docs/cli/searching", icon: <SearchIcon className="h-4 w-4" /> },
-    ],
-  },
-  {
-    title: "Reference",
-    icon: <Bot className="h-4 w-4" />,
-    items: [
-      { title: "Configuration", href: "/docs/configuration", icon: <Settings className="h-4 w-4" /> },
-      { title: "Analysis Ontology", href: "/docs/ontology", icon: <Brain className="h-4 w-4" /> },
+      { title: "Configuration", href: "/docs/cli/config", icon: <Settings className="h-4 w-4" /> },
     ],
   },
 ];

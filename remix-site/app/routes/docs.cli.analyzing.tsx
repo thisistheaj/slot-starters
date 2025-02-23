@@ -2,197 +2,196 @@ import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Analyzing Starters - Slot CLI Documentation" },
-    { name: "description", content: "Learn how to use Slot's CLI tools to analyze starter templates" },
+    { title: "Analyzing Starters - Slot Documentation" },
+    { name: "description", content: "Learn how to analyze templates and generate quality metrics using Slot's CLI tools" },
   ];
 };
 
-export default function AnalyzingDocs() {
+export default function CliAnalyzing() {
   return (
     <div className="space-y-6">
       <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">Analyzing Starters</h1>
       
       <div className="space-y-4">
         <p>
-          After scraping starter templates, you can use Slot's analysis tools to extract features,
-          evaluate quality metrics, and generate structured data about each template.
+          After scraping templates, you can use Slot's analysis tools to evaluate their quality,
+          identify features, and generate comprehensive reports. This guide shows you how to run
+          and customize template analysis.
         </p>
 
-        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">Basic Usage</h2>
+        <div className="rounded-lg border bg-muted/50 p-4">
+          <p className="text-sm text-muted-foreground">
+            <strong>Note:</strong> The CLI tools are optional. You only need them if you want to
+            customize your template index. The MCP server works out of the box with our pre-analyzed
+            template collection.
+          </p>
+        </div>
+
+        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-8">Basic Usage</h2>
         
-        <p>
-          Run the analyze command on your scraped templates:
-        </p>
-        <pre className="p-4 rounded-lg bg-muted overflow-auto">
-          <code>{`slot analyze [options]`}</code>
-        </pre>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold text-lg">Analyze Templates</h3>
+            <p className="text-muted-foreground mb-2">
+              Run analysis on all templates in your index:
+            </p>
+            <pre className="p-4 rounded-lg bg-muted overflow-x-auto">
+              <code className="text-sm font-mono">slot analyze</code>
+            </pre>
+          </div>
 
-        <h3 className="text-xl font-semibold mt-6">Options</h3>
-        <div className="space-y-3">
           <div>
-            <code className="text-sm bg-muted px-2 py-1 rounded">-f, --force</code>
-            <p className="text-sm text-muted-foreground mt-1">Force reanalysis of all templates</p>
-          </div>
-          <div>
-            <code className="text-sm bg-muted px-2 py-1 rounded">-c, --concurrency &lt;number&gt;</code>
-            <p className="text-sm text-muted-foreground mt-1">Number of templates to analyze concurrently</p>
-          </div>
-          <div>
-            <code className="text-sm bg-muted px-2 py-1 rounded">-o, --output &lt;dir&gt;</code>
-            <p className="text-sm text-muted-foreground mt-1">Output directory for analysis results</p>
+            <h3 className="font-semibold text-lg">Force Reanalysis</h3>
+            <p className="text-muted-foreground mb-2">
+              Force reanalysis of all templates, ignoring cached results:
+            </p>
+            <pre className="p-4 rounded-lg bg-muted overflow-x-auto">
+              <code className="text-sm font-mono">slot analyze --force</code>
+            </pre>
           </div>
         </div>
 
         <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-8">Analysis Process</h2>
         
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-xl font-semibold">1. Content Analysis</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              The analyzer examines:
-            </p>
-            <ul className="list-disc list-inside space-y-2 mt-2">
-              <li>README and documentation files</li>
-              <li>Package configuration files</li>
-              <li>Source code structure</li>
-              <li>Test files and coverage</li>
-              <li>Configuration files</li>
-            </ul>
-          </div>
+        <div className="space-y-4">
+          <p className="text-muted-foreground">
+            The analysis process uses OpenAI's LLM to evaluate templates across multiple dimensions:
+          </p>
 
-          <div>
-            <h3 className="text-xl font-semibold">2. Feature Detection</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Identifies implemented features:
-            </p>
-            <ul className="list-disc list-inside space-y-2 mt-2">
-              <li>Development tools and configurations</li>
-              <li>Testing frameworks and setup</li>
-              <li>Deployment configurations</li>
-              <li>Security features</li>
-              <li>Performance optimizations</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-semibold">3. Quality Assessment</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Evaluates template quality:
-            </p>
-            <ul className="list-disc list-inside space-y-2 mt-2">
-              <li>Documentation completeness</li>
-              <li>Code organization</li>
-              <li>Test coverage</li>
-              <li>Dependency health</li>
-              <li>Maintenance status</li>
-            </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-semibold text-lg">Features Analysis</h3>
+              <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                <li>Technology stack identification</li>
+                <li>Project structure evaluation</li>
+                <li>Development tooling detection</li>
+                <li>Feature set assessment</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-lg">Quality Assessment</h3>
+              <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                <li>Code quality evaluation</li>
+                <li>Documentation completeness</li>
+                <li>Maintenance status</li>
+                <li>Best practices adherence</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-8">Example Usage</h2>
+        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-8">Analysis Options</h2>
         
         <div className="space-y-4">
-          <div>
-            <h3 className="text-xl font-semibold">Basic Analysis</h3>
-            <pre className="p-4 rounded-lg bg-muted overflow-auto mt-2">
-              <code>{`# Analyze all new templates
-slot analyze
+          <table className="w-full text-muted-foreground">
+            <thead>
+              <tr className="border-b">
+                <th className="text-left py-2">Option</th>
+                <th className="text-left py-2">Description</th>
+                <th className="text-left py-2">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b">
+                <td className="py-2"><code className="text-sm font-mono">--features</code></td>
+                <td>Features to analyze</td>
+                <td><code className="text-sm font-mono">--features auth,testing</code></td>
+              </tr>
+              <tr className="border-b">
+                <td className="py-2"><code className="text-sm font-mono">--metrics</code></td>
+                <td>Quality metrics to evaluate</td>
+                <td><code className="text-sm font-mono">--metrics docs,maintenance</code></td>
+              </tr>
+              <tr className="border-b">
+                <td className="py-2"><code className="text-sm font-mono">--depth</code></td>
+                <td>Analysis depth level</td>
+                <td><code className="text-sm font-mono">--depth full</code></td>
+              </tr>
+              <tr className="border-b">
+                <td className="py-2"><code className="text-sm font-mono">--cache</code></td>
+                <td>Use cached results</td>
+                <td><code className="text-sm font-mono">--cache false</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-# Force reanalysis of all templates
-slot analyze --force
-
-# Analyze with higher concurrency
-slot analyze --concurrency 4`}</code>
-            </pre>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-semibold">Custom Output</h3>
-            <pre className="p-4 rounded-lg bg-muted overflow-auto mt-2">
-              <code>{`# Output to specific directory
-slot analyze --output ./analyzed-templates
-
-# Combine with force option
-slot analyze --force --output ./fresh-analysis`}</code>
-            </pre>
+        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-8">Analysis Categories</h2>
+        
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-semibold text-lg">Features</h3>
+              <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                <li>authentication</li>
+                <li>testing</li>
+                <li>deployment</li>
+                <li>ci</li>
+                <li>styling</li>
+                <li>state</li>
+                <li>api</li>
+                <li>database</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-lg">Metrics</h3>
+              <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                <li>documentation</li>
+                <li>maintenance</li>
+                <li>code-quality</li>
+                <li>testing</li>
+                <li>security</li>
+                <li>performance</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-8">Output Format</h2>
+        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-8">Custom Analysis Rules</h2>
         
-        <p>
-          Analysis results are saved in JSON format following our{" "}
-          <a href="/docs/ontology" className="font-medium underline underline-offset-4">
-            template ontology
-          </a>
-          :
-        </p>
+        <div className="space-y-4">
+          <p className="text-muted-foreground">
+            You can define custom analysis rules in a configuration file:
+          </p>
 
-        <pre className="p-4 rounded-lg bg-muted overflow-auto mt-4">
-          <code>{JSON.stringify({
-            "metadata": {
-              "name": "example-starter",
-              "description": "Example starter template",
-              "url": "https://github.com/example/starter"
-            },
-            "technologies": [
-              "react",
-              "typescript",
-              "tailwind"
-            ],
-            "features": {
-              "development": {
-                "hotReload": true,
-                "typeChecking": true
-              },
-              "testing": {
-                "jest": true,
-                "cypress": true
-              }
-            },
-            "quality": {
-              "documentation": 0.85,
-              "maintenance": 0.9,
-              "testing": 0.75
-            }
-          }, null, 2)}</code>
-        </pre>
+          <pre className="p-4 rounded-lg bg-muted overflow-x-auto">
+            <code className="text-sm font-mono">{`# analysis.yml
+rules:
+  features:
+    auth:
+      files: ["auth/**", "**/auth.*"]
+      imports: ["next-auth", "auth0", "firebase/auth"]
+    testing:
+      files: ["**/*.test.*", "**/*.spec.*"]
+      imports: ["jest", "vitest", "cypress"]
+  
+  metrics:
+    documentation:
+      weight: 0.3
+      criteria:
+        - readme-length
+        - setup-instructions
+        - api-docs
+    maintenance:
+      weight: 0.4
+      criteria:
+        - commit-frequency
+        - issue-response-time
+        - dependency-freshness
 
-        <div className="mt-6 rounded-md bg-muted p-4">
-          <h3 className="text-sm font-medium">Analysis Tips</h3>
-          <ul className="mt-2 text-sm space-y-2">
-            <li>• Run analysis after each scraping session to keep data fresh</li>
-            <li>• Use force option when template structure changes significantly</li>
-            <li>• Adjust concurrency based on your system's capabilities</li>
-            <li>• Check analysis logs for any detection issues</li>
-          </ul>
+# Run analysis with custom rules
+slot analyze --config analysis.yml`}</code>
+          </pre>
         </div>
 
         <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-8">Next Steps</h2>
-        
-        <p>
-          After analyzing templates, you can:
+        <p className="text-muted-foreground">
+          After analyzing templates, learn how to{" "}
+          <a href="/docs/cli/searching" className="underline hover:no-underline">search through them</a>
+          {" "}using the CLI tools.
         </p>
-        <ul className="list-disc list-inside space-y-2">
-          <li>
-            <a href="/docs/cli/searching" className="font-medium underline underline-offset-4">
-              Search through analyzed templates
-            </a>
-            {" "}to find ones that match your needs
-          </li>
-          <li>
-            <a href="/docs/search" className="font-medium underline underline-offset-4">
-              Use the search engine
-            </a>
-            {" "}to explore templates through the web interface
-          </li>
-          <li>
-            <a href="/docs/ontology" className="font-medium underline underline-offset-4">
-              Learn more about the ontology
-            </a>
-            {" "}to understand the analysis structure
-          </li>
-        </ul>
       </div>
     </div>
   );

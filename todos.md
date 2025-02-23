@@ -14,9 +14,9 @@ README.md
 -[x] review UX - GitHub
 -[x] review UX - docsite
 -[x] review UX - explore page
+-[x] review content - landing page
+-[x] review content - docs
 -[ ] review content - README
--[ ] review content - docs
--[ ] review content - landing page
 
 # fixes
 
@@ -32,9 +32,12 @@ explore:
 -[x] icon in view button on explore page
 -[x] 'Search X' => 'Filter X'
 -[x] more contrastful tags
+-[ ] quality filter is not mobile responsive
 landing page:
 -[x] 3 steps in quickstart
 -[x] theme with color scheme
+docs:
+-[ ] nav drawer is not mobile responsive
 
 # enhancements:
 -[x] remove openai dependency for MCP setup?
@@ -48,3 +51,6 @@ landing page:
 -[x] deploy remix site to railway
 -[x] connect domain to remix site
 -[ ] launch on twitter
+-[ ] test npm tool
+-[ ] add social sharing (for X.com, Reddit, etc.)
+
