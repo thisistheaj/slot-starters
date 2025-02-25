@@ -78,7 +78,7 @@ export default function Explore() {
   const [loading, setLoading] = useState(true);
   const [selectedTechs, setSelectedTechs] = useState<Set<string>>(new Set());
   const [selectedFeatures, setSelectedFeatures] = useState<Set<string>>(new Set());
-  const [minQuality, setMinQuality] = useState(MIN_QUALITY_SCORE);
+  const [min_quality, setMinQuality] = useState(MIN_QUALITY_SCORE);
 
   // Load templates
   useEffect(() => {
@@ -116,7 +116,7 @@ export default function Explore() {
   // Filter and group templates
   const filteredTemplates = templates.filter(template => {
     const qualityScore = getQualityScore(template.quality);
-    if (qualityScore < minQuality) return false;
+    if (qualityScore < min_quality) return false;
     
     // If no filters are selected, show all templates that meet quality threshold
     if (selectedTechs.size === 0 && selectedFeatures.size === 0) return true;
@@ -185,7 +185,7 @@ export default function Explore() {
 
               <div className="max-w-xl">
                 <QualitySelector
-                  value={minQuality}
+                  value={min_quality}
                   onChange={setMinQuality}
                 />
               </div>

@@ -86,7 +86,7 @@ export default function ConfigurationDocs() {
   // Search defaults
   search: {
     maxResults: 10,
-    minQualityScore: 3,
+    min_quality_score: 3,
     sortBy: "quality"
   },
 

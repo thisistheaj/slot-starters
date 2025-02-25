@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { Header } from "~/components/header";
-import { Brain, Search, Sparkles } from "lucide-react";
+import { Brain, Copy, Search, Sparkles } from "lucide-react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -90,43 +90,37 @@ export default function Index() {
               <div className="p-6 space-y-6">
                 <div className="space-y-4">
                   <h3 className="font-semibold">1. Clone the repository and install dependencies</h3>
-                  <pre className="relative rounded bg-muted p-4 overflow-x-auto">
-                    <code className="text-sm font-mono">
-                      {`git clone https://github.com/thisistheaj/slot-starters.git
+                  <div className="rounded bg-muted overflow-hidden">
+                    <div className="flex items-center justify-between px-4 py-2 border-b bg-muted/50">
+                      <span className="text-xs font-mono text-muted-foreground">bash</span>
+                      <button 
+                        onClick={() => copyCode(
+                          "git clone https://github.com/thisistheaj/slot-starters.git\ncd slot-starters\nnpm install"
+                        )}
+                        className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        <Copy className="h-3 w-3" />
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre className="p-4">
+                      <code className="text-sm font-mono">
+                        {`git clone https://github.com/thisistheaj/slot-starters.git
 cd slot-starters
 npm install`}
-                    </code>
-                    <button 
-                      onClick={() => copyCode(
-                        "git clone https://github.com/thisistheaj/slot-starters.git\ncd slot-starters\nnpm install"
-                      )}
-                      className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
-                    >
-                      Copy
-                    </button>
-                  </pre>
+                      </code>
+                    </pre>
+                  </div>
                 </div>
 
                 <div className="space-y-4">
                   <h3 className="font-semibold">2. Add the Slot MCP server to your Claude Desktop config</h3>
-                  <pre className="relative rounded bg-muted p-4 overflow-x-auto">
-                    <code className="text-sm font-mono">
-                      {`mkdir -p ~/Library/Application\\ Support/Claude && cat > ~/Library/Application\\ Support/Claude/claude_desktop_config.json << EOL
-{
-  "mcpServers": {
-    "slot-starters": {
-      "command": "node",
-      "args": [
-        "$(pwd)/server.js"
-      ]
-    }
-  }
-}
-EOL`}
-                    </code>
-                    <button 
-                      onClick={() => copyCode(
-                        `mkdir -p ~/Library/Application\\ Support/Claude && cat > ~/Library/Application\\ Support/Claude/claude_desktop_config.json << EOL
+                  <div className="rounded bg-muted overflow-hidden">
+                    <div className="flex items-center justify-between px-4 py-2 border-b bg-muted/50">
+                      <span className="text-xs font-mono text-muted-foreground">bash</span>
+                      <button 
+                        onClick={() => copyCode(
+                          `mkdir -p ~/Library/Application\\ Support/Claude && cat > ~/Library/Application\\ Support/Claude/claude_desktop_config.json << EOL
 {
   "mcpServers": {
     "slot-starters": {
@@ -138,12 +132,30 @@ EOL`}
   }
 }
 EOL`
-                      )}
-                      className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
-                    >
-                      Copy
-                    </button>
-                  </pre>
+                        )}
+                        className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        <Copy className="h-3 w-3" />
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre className="p-4">
+                      <code className="text-sm font-mono">
+                        {`mkdir -p ~/Library/Application\\ Support/Claude && cat > ~/Library/Application\\ Support/Claude/claude_desktop_config.json << EOL
+{
+  "mcpServers": {
+    "slot-starters": {
+      "command": "node",
+      "args": [
+        "$(pwd)/server.js"
+      ]
+    }
+  }
+}
+EOL`}
+                      </code>
+                    </pre>
+                  </div>
                 </div>
               </div>
             </div>

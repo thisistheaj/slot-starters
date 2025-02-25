@@ -35,7 +35,7 @@ export function QualitySelector({ value, onChange }: QualitySelectorProps) {
   };
 
   return (
-    <div className="flex items-center gap-8 p-4 rounded-lg border bg-card/50">
+    <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 p-4 rounded-lg border bg-card/50">
       <div className="flex-shrink-0">
         <h3 className="text-sm font-medium">Minimum Quality</h3>
         <p className="text-xs text-muted-foreground">{labels[value as keyof typeof labels]}</p>

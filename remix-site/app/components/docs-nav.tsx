@@ -11,7 +11,8 @@ import {
   Microscope,
   Bot,
   Gauge,
-  Compass
+  Compass,
+  Server
 } from "lucide-react";
 
 const docsNav = [
@@ -23,6 +24,15 @@ const docsNav = [
       { title: "Quickstart", href: "/docs/quickstart", icon: <Download className="h-4 w-4" /> },
       { title: "Ontology", href: "/docs/ontology", icon: <Brain className="h-4 w-4" /> },
       { title: "Quality Metrics", href: "/docs/quality-metrics", icon: <Gauge className="h-4 w-4" /> },
+    ],
+  },
+  {
+    title: "API",
+    icon: <Server className="h-4 w-4" />,
+    items: [
+      { title: "Overview", href: "/docs/api/overview", icon: <Compass className="h-4 w-4" /> },
+      { title: "List Starters", href: "/docs/api/starters", icon: <FileCode className="h-4 w-4" /> },
+      { title: "Get Starter", href: "/docs/api/starters/id", icon: <FileCode className="h-4 w-4" /> },
     ],
   },
   {

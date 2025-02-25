@@ -64,7 +64,7 @@ export default function CliConfig() {
         "react-prod": {
           "tech": ["react", "typescript"],
           "features": ["authentication", "testing"],
-          "minQuality": 4
+          "min_quality": 4
         }
       }
     }

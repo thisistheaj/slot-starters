@@ -34,12 +34,12 @@ export function TemplateCard({ template, qualityScore, selectedTechs, matchScore
     <div className="rounded-lg border bg-[#F5F1EA] h-full">
       <div className="flex flex-col h-full p-6">
         {/* Header section with avatar and metadata */}
-        <div className="flex items-start gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-start gap-4">
           <Avatar name={template.metadata.name} className="flex-shrink-0" />
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
               <h3 className="font-semibold break-words">{template.metadata.name}</h3>
-              <div className="flex items-center gap-2 flex-shrink-0">
+              <div className="flex flex-wrap gap-2 flex-shrink-0">
                 {matchScore && (
                   <div 
                     className={cn(
