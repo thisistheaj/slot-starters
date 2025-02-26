@@ -102,6 +102,7 @@ export default function DocsIndex() {
               <li><Link to="/docs/api/overview" className="underline hover:no-underline">Overview</Link> - Learn about the REST API</li>
               <li><Link to="/docs/api/starters" className="underline hover:no-underline">List Starters</Link> - Get and filter templates</li>
               <li><Link to="/docs/api/starters/id" className="underline hover:no-underline">Get Starter</Link> - Get template details</li>
+              <li><Link to="/docs/api/recommendation" className="underline hover:no-underline">Get Recommendation</Link> - AI-powered template suggestions</li>
             </ul>
           </div>
         </div>

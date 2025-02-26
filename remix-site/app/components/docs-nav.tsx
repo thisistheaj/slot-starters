@@ -12,7 +12,8 @@ import {
   Bot,
   Gauge,
   Compass,
-  Server
+  Server,
+  Sparkles
 } from "lucide-react";
 
 const docsNav = [
@@ -33,6 +34,8 @@ const docsNav = [
       { title: "Overview", href: "/docs/api/overview", icon: <Compass className="h-4 w-4" /> },
       { title: "List Starters", href: "/docs/api/starters", icon: <FileCode className="h-4 w-4" /> },
       { title: "Get Starter", href: "/docs/api/starters/id", icon: <FileCode className="h-4 w-4" /> },
+      { title: "Get Recommendation", href: "/docs/api/recommendation", icon: <Sparkles className="h-4 w-4" /> },
+      { title: "Get Expert Recommendation", href: "/docs/api/recommendation/expert", icon: <Brain className="h-4 w-4" /> },
     ],
   },
   {
