@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
 import { cn } from "~/lib/utils";
-import { BookOpen, Github, Search } from "lucide-react";
+import { BookOpen, Github, Search, MessageSquare } from "lucide-react";
 
 export function Header() {
   return (
@@ -23,6 +23,16 @@ export function Header() {
             >
               <Search className="h-4 w-4" />
               <span>Explore</span>
+            </Link>
+            <Link
+              to="/chat"
+              className={cn(
+                "flex items-center gap-1 hover:text-foreground/80",
+                "transition-colors"
+              )}
+            >
+              <MessageSquare className="h-4 w-4" />
+              <span>Chat</span>
             </Link>
             <Link
               to="/docs"
