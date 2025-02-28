@@ -54,3 +54,22 @@ docs:
 -[ ] test npm tool
 -[ ] add social sharing (for X.com, Reddit, etc.)
 
+# features:
+-[ ] view starter page
+    -[ ] visualize all info
+-[ ] expanded crawl
+-[ ] logged in user
+    -[ ] ratings on view starter page
+    -[ ] real chat history
+    -[ ] save starters
+    -[ ] .slotrules
+-[ ] proper brainlift
+-[ ] AI can link to starters
+-[ ] share link in unauthed messages
+-[ ] share link in authed messages
+-[ ] share link in view starter page
+-[ ] share link in lists
+-[ ] sse in messaging
+-[ ] api routes for all sharing and rating
+-[ ] mcp routes for all sharing and rating
+-[ ] mcp routes for all expert features

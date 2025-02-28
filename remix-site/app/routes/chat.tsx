@@ -2,8 +2,42 @@ import { useState, useEffect } from "react";
 import { Header } from "~/components/header";
 import { MessageSquare, Send, Sparkles, Brain } from "lucide-react";
 import { cn } from "~/lib/utils";
-import type { MetaFunction } from "@remix-run/node";
+import type { MetaFunction, ActionFunctionArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { useFetcher } from "@remix-run/react";
 import { marked } from 'marked';
+
+// Configure marked options
+marked.setOptions({
+  gfm: true,
+  breaks: true
+});
+
+async function contextualizeQuestion(messages: Message[], currentQuestion: string) {
+  const recentMessages = messages.slice(-5); // Get last 5 messages for context
+  
+  const prompt = `Given the following chat history and a new question, rephrase the question to include relevant context from the conversation. The rephrased question should be self-contained and make sense on its own.
+
+Chat history:
+${recentMessages.map(m => `${m.role}: ${m.content}`).join('\n')}
+
+New question: "${currentQuestion}"
+
+Rephrase the question to include context:`;
+
+  const { OpenAI } = await import("openai");
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [{ role: "user", content: prompt }],
+    temperature: 0.7,
+  });
+
+  return response.choices[0]?.message?.content || currentQuestion;
+}
 
 export const meta: MetaFunction = () => {
   return [
@@ -38,11 +72,31 @@ const modeOptions: ModeOption[] = [
   },
 ];
 
-// Configure marked options
-marked.setOptions({
-  gfm: true,
-  breaks: true
-});
+export async function action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const input = formData.get("input") as string;
+  const mode = formData.get("mode") as "standard" | "expert";
+  const history = JSON.parse(formData.get("history") as string) as Message[];
+
+  try {
+    // Contextualize the question based on chat history
+    const contextualizedQuestion = await contextualizeQuestion(history, input);
+    
+    // Call the appropriate API endpoint with the contextualized question
+    const endpoint = mode === "expert" ? "/api/recommendation/expert" : "/api/recommendation";
+    const url = new URL(request.url);
+    const response = await fetch(`${url.origin}${endpoint}?question=${encodeURIComponent(contextualizedQuestion)}`);
+    const data = await response.json();
+
+    return json({ success: true, recommendation: data.recommendation });
+  } catch (error) {
+    console.error("Chat action error:", error);
+    return json(
+      { success: false, error: "Failed to process your request" },
+      { status: 500 }
+    );
+  }
+}
 
 function MessageContent({ content }: { content: string }) {
   const html = marked(content);
@@ -55,11 +109,19 @@ function MessageContent({ content }: { content: string }) {
   );
 }
 
+type ActionData = {
+  success: boolean;
+  recommendation?: string;
+  error?: string;
+};
+
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const fetcher = useFetcher<ActionData>();
   const [mode, setMode] = useState<"standard" | "expert">("standard");
+
+  const isLoading = fetcher.state !== "idle";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -74,33 +136,28 @@ export default function Chat() {
 
     setMessages(prev => [...prev, userMessage]);
     setInput("");
-    setIsLoading(true);
 
-    try {
-      const endpoint = mode === "expert" ? "/api/recommendation/expert" : "/api/recommendation";
-      const response = await fetch(`${endpoint}?question=${encodeURIComponent(input)}`);
-      const data = await response.json();
+    const formData = new FormData();
+    formData.append("input", input);
+    formData.append("mode", mode);
+    formData.append("history", JSON.stringify(messages));
 
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: "assistant",
-        content: data.recommendation,
-        mode
-      };
-
-      setMessages(prev => [...prev, assistantMessage]);
-    } catch (error) {
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: "assistant",
-        content: "Sorry, I encountered an error while processing your request.",
-        mode
-      };
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
-    }
+    fetcher.submit(formData, { method: "post" });
   }
+
+  useEffect(() => {
+    if (fetcher.data && fetcher.state === "idle") {
+      const assistantMessage: Message = {
+        id: Date.now().toString(),
+        role: "assistant",
+        content: fetcher.data.success && fetcher.data.recommendation 
+          ? fetcher.data.recommendation 
+          : "Sorry, I encountered an error while processing your request.",
+        mode
+      };
+      setMessages(prev => [...prev, assistantMessage]);
+    }
+  }, [fetcher.data, fetcher.state, mode]);
 
   return (
     <div className="relative flex min-h-screen flex-col">
@@ -155,18 +212,18 @@ export default function Chat() {
             </div>
 
             {/* Input Form */}
-            <form onSubmit={handleSubmit} className="fixed bottom-0 left-0 right-0 bg-background border-t p-4">
+            <fetcher.Form onSubmit={handleSubmit} className="fixed bottom-0 left-0 right-0 bg-background border-t p-4">
               <div className="container">
-                <div className="mx-auto max-w-3xl flex gap-4">
+                <div className="mx-auto max-w-3xl space-y-4 md:space-y-0 md:flex md:gap-4">
                   {/* Mode Toggle */}
-                  <div className="flex rounded-lg border bg-muted p-1">
+                  <div className="flex rounded-lg border bg-muted p-1 md:w-auto w-full">
                     {modeOptions.map((option) => (
                       <button
                         key={option.value}
                         type="button"
                         onClick={() => setMode(option.value)}
                         className={cn(
-                          "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                          "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium transition-colors flex-1 md:flex-initial justify-center",
                           mode === option.value
                             ? "bg-background text-foreground shadow-sm"
                             : "text-muted-foreground hover:bg-background/50 hover:text-foreground"
@@ -208,7 +265,7 @@ export default function Chat() {
                   </div>
                 </div>
               </div>
-            </form>
+            </fetcher.Form>
           </div>
         </div>
       </main>
